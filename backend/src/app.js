@@ -35,6 +35,13 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Store Rating API is running"
+  });
+});
+
 app.get('/health', (req, res) => res.json({ status: 'OK', timestamp: new Date().toISOString() }));
 
 app.use('/api/auth', authRoutes);
